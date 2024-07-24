@@ -54,9 +54,52 @@ keyInput.addEventListener('keyup', function (event) {
 //     Activity 4: Form Events
 
 // • Task 7: Add a submit event listener to a form that prevents the default submission and logs the form data to the console.
+let form = document.querySelector('#myForm');
+
+form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    // New Approach
+    const formData = new FormData(form);
+    console.log(formData);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    console.log(`${name} and ${email}`); s
+})
+
 // • Task 8: Add a change event listener to a select dropdown that displays the selected value in a paragraph.
+const selectDropdown = document.querySelector('#selectDropdown');
+let selectedValue = document.querySelector('#selectedValue');
+
+selectDropdown.addEventListener('change', function (event) {
+    selectedValue.innerHTML = selectDropdown.value;
+
+});
 
 //     Activity 5: Event Delegation
 
 // • Task 9: Add a click event listener to a list that logs the text content of the clicked list item using event delegation.
+const itemList = document.querySelector('#itemList');
+
+itemList.addEventListener('click', function (event) {
+    if (event.target.tagName === 'LI') { // LI capital due to OLD Conventions
+        console.log(event.target.textContent);
+    }
+});
+
+
 // • Task 10: Add an event listener to a parent element that listens for events from dynamically added child elements.
+const parentContainer = document.getElementById('parent-container');
+const addButton = document.getElementById('add-button');
+
+addButton.addEventListener('click', function () {
+    const newListItem = document.createElement('li');
+    newListItem.textContent = "This is a new item";
+
+    // Event delegation - listen on parent container
+    parentContainer.addEventListener('click', function (event) {
+        if (event.target === newListItem) {
+            console.log("New list item clicked!");
+        }
+    });
+    parentContainer.appendChild(newListItem);
+});
