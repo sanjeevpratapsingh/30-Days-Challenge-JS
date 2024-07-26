@@ -1,9 +1,15 @@
 // Activity 1: Understanding Promises
 
 // • Task 1: Create a promise that resolves with a message after a 2 - second timeout and log the message to the console.
-let promise = new Promise('resolve', 'reject'){
+let promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('Message after a 2 - second');
+    }, 2000)
+})
 
-}
+promise.then(function (message) {
+    console.log(message);
+})
 
 // • Task 2: Create a promise that rejects with an error message after a 2 - second timeout and handle the error using
 // • catch () .
