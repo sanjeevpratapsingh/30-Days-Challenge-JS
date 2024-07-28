@@ -14,10 +14,26 @@ promise.then(function (message) {
 // • Task 2: Create a promise that rejects with an error message after a 2 - second timeout and handle the error using
 // • catch () .
 
+const promiseOne = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        let success = false;
+        if (success) {
+            resolve('Passed');
+        }
+        else {
+            reject('Failed')
+        }
+    }, 2000);
+});
+
+promiseOne.then(message => console.log(message)).catch(error => console.log(error));
 // Activity 2: Chaining Promises
 
 // • Task 3: Create a sequence of promises that simulate fetching data from a server.Chain the promises to log messages in a
 // specific order.
+const userData =
+
+
 //     Activity 3: Using Async / Await
 
 // • Task 4: Write an async function that waits for a promise to resolve and then logs the resolved value.
