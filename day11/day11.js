@@ -31,12 +31,52 @@ promiseOne.then(message => console.log(message)).catch(error => console.log(erro
 
 // • Task 3: Create a sequence of promises that simulate fetching data from a server.Chain the promises to log messages in a
 // specific order.
-const userData =
+
+function promise1() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('Resolving Data');
+        }, 2000);
+    });
+}
+
+function promise2() {
+    return new Promise(function (resolve, reject) {
+        setTimeout(() => {
+            resolve('Resolving Data 2');
+        }, 3000);
+    });
+}
+
+promise1().then((result1) => {
+    console.log(result1);
+    return promise2();
+}).then((result2) => {
+    console.log(result2);
+}).catch(error => console.log(error))
 
 
 //     Activity 3: Using Async / Await
 
 // • Task 4: Write an async function that waits for a promise to resolve and then logs the resolved value.
+// Step 1: Create a function that returns a Promise
+function delay(ms) {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve('Hello');
+        }, ms);
+    });
+}
+
+// Step 2: Write the async function that waits for the Promise to resolve and then logs the resolved value
+async function waitFunction() {
+    const message = await delay(5000); // Wait for 3 seconds
+    console.log(message); // Log the resolved value ('Hello')
+}
+
+// Call the function to see the result
+waitFunction();
+
 // • Task 5: Write an async function that handles a rejected promise using try-catch and logs the error message.
 //     Activity 4: Fetching Data from an API
 
