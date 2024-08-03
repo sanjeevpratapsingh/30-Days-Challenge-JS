@@ -59,31 +59,174 @@ promise1().then((result1) => {
 //     Activity 3: Using Async / Await
 
 // • Task 4: Write an async function that waits for a promise to resolve and then logs the resolved value.
-// Step 1: Create a function that returns a Promise
-function delay(ms) {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve('Hello');
-        }, ms);
-    });
+const myPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('Things Resolved')
+    }, 1000);
+})
+
+async function waitFunction(anyPromise) {
+    const result = await anyPromise;
+    console.log(result);
 }
 
-// Step 2: Write the async function that waits for the Promise to resolve and then logs the resolved value
-async function waitFunction() {
-    const message = await delay(5000); // Wait for 3 seconds
-    console.log(message); // Log the resolved value ('Hello')
-}
+waitFunction(myPromise);
 
-// Call the function to see the result
-waitFunction();
 
 // • Task 5: Write an async function that handles a rejected promise using try-catch and logs the error message.
+console.log("---------------");
+
+const anotherPromise = new Promise((resolve, reject) => {
+
+    const success = false;
+    if (success) {
+        resolve('Success');
+    }
+    else {
+        reject('Rejected');
+    }
+})
+
+async function handleRejection(checkPromise) {
+    try {
+        const response = await checkPromise;
+        console.log(response);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+handleRejection(anotherPromise)
+
+
 //     Activity 4: Fetching Data from an API
 
 // • Task 6: Use the fetch API to get data from a public API and log the response data to the console using promises.
+
+fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json(); // Parse the response as JSON
+    })
+    .then(data => {
+        // console.log(data); // Log the parsed data
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+
+
+
 // • Task 7: Use the fetch API to get data from a public API and log the response data to the console using async/await.
+async function fetchDataFromAPI() {
+    try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/users');
+        if (!response.ok) {
+            throw new Error("Not Able to Connect With Network");
+        }
+        const userData = await response.json();
+        // console.log(userData);
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+fetchDataFromAPI()
 
 // Activity 5: Concurrent Promises
 
 // • Task 8: Use Promise.all to wait for multiple promises to resolve and then log all their values.
+const pOne = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+        let success = true;
+        if (resolve) {
+            resolve("pOne Succcess")
+        }
+        else {
+            reject("pOne Rejected")
+        }
+    }, 1000);
+
+});
+
+const pTwo = new Promise(function (resolve, reject) {
+    setTimeout(() => {
+        let success = false;
+        if (resolve) {
+            resolve("pTwo Succcess")
+        }
+        else {
+            reject("pTwo Rejected")
+        }
+    }, 1000);
+})
+
+const pThree = new Promise(function (resolve, reject) {
+    setTimeout(() => {
+        let success = true;
+        if (resolve) {
+            resolve("pThree Succcess")
+        }
+        else {
+            reject("pThree Rejected")
+        }
+    }, 1000);
+})
+
+Promise.all([pOne, pTwo, pThree])
+    .then((pOneResolve) => {
+        console.log(pOneResolve);
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+
+
 // • Task 9: Use Promise.race to log the value of the first promise that resolves among multiple promises.
+const rOne = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+        let success = true;
+        if (resolve) {
+            resolve("pOne Succcess")
+        }
+        else {
+            reject("pOne Rejected")
+        }
+    }, 1000);
+
+});
+
+const rTwo = new Promise(function (resolve, reject) {
+    setTimeout(() => {
+        let success = false;
+        if (resolve) {
+            resolve("pTwo Succcess")
+        }
+        else {
+            reject("pTwo Rejected")
+        }
+    }, 3000);
+})
+
+const rThree = new Promise(function (resolve, reject) {
+    setTimeout(() => {
+        let success = true;
+        if (resolve) {
+            resolve("rThree Succcess")
+        }
+        else {
+            reject("rThree Rejected")
+        }
+    }, 500);
+})
+
+Promise.race([rOne, rTwo, rThree])
+    .then((message) => {
+        console.log(message);
+    })
+    .catch((error) => {
+        console.log(error);
+    })
