@@ -51,24 +51,16 @@ countCounter.increment();
 countCounter.increment();
 
 
-function createPerson(name) {
-    return {
-        greet: function () {
-            console.log(`Hello, my name is ${name}`);
-        }
-    };
-}
-
-const person1 = createPerson('Alice');
-const person2 = createPerson('Bob');
-
-person1.greet(); // What will this log?
-person2.greet(); // What will this log?
 //     Activity 2: Practical Closures
 // • Task 3: Write a function that generates unique IDs.Use a closure to keep track of the last generated ID and increment it
 // with each call.
+
+
+
+
 // • Task 4: Create a closure that captures a user's name and returns a function that greets the user by name.
 // Activity 3: Closures in Loops
+
 
 // • Task 5: Write a loop that creates an array of functions.Each function should log its index when called.Use a closure to
 // ensure each function logs the correct index.
