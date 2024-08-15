@@ -4,11 +4,42 @@
 // Activity 1: Basic Recursion
 
 // • Task 1: Write a recursive function to calculate the factorial of a number. Log the result for a few test cases.
+let factTotal=1;
+function factRecur(num){
+    if(num!== 0){
+        factTotal = num * factRecur(num-1);
+    }
+    return factTotal;
+}
+console.log(factRecur(5));
+
 // • Task 2: Write a recursive function to calculate the nth Fibonacci number. Log the result for a few test cases.
+// 0 1 1 2 3 5 8
+
+function fabSeries(num){
+    if(num == 0){
+        return 0;
+    }
+    else if(num == 1){
+        return 1;
+    }
+    return fabSeries(num-1) + fabSeries(num-2);
+}
+
+console.log(fabSeries(6));
 
 // Activity 2: Recursion with Arrays
 
 // • Task 3: Write a recursive function to find the sum of all elements in an array. Log the result for a few test cases.
+let arr1 = [50, 20, 30, 40,60, 70];
+let cal = 0;
+function calArray(arrData){
+    if(arrData.index)
+    console.log(arrData[0]);
+}
+
+calArray(arr1);
+
 // • Task 4: Write a recursive function to find the maximum element in an array. Log the result for a few test cases.
 
 // Activity 3: String Manipulation with Recursion
