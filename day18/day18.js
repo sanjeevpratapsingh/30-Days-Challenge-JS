@@ -3,6 +3,23 @@
 // Activity 1: Sorting Algorithms
 
 // • Task 1: Implement the bubble sort algorithm to sort an array of numbers in ascending order. Log the sorted array.
+let arrData = [20, 10, 50, 5, 60, 70, 90];
+let sortedArr = []; // 
+
+for(let i=0; i<arrData.length; i++){
+    if(arrData[i] > arrData[i+1]){ // arrData[i] = 20 > arrData[i+1] = 10
+        
+        sortedArr.push(arrData[i]);
+    }
+    else{
+        sortedArr.push(arrData[i+1]);
+    }
+}
+
+console.log(sortedArr);
+
+
+
 // • Task 2: Implement the selection sort algorithm to sort an array of numbers in ascending order. Log the sorted array.
 // • Task 3: Implement the quicksort algorithm to sort an array of numbers in ascending order. Log the sorted array.
 
